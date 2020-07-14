@@ -139,13 +139,7 @@ double edge_KAF(model& our_model, int edge_index)
 				a_I_left_deg_2 = edge.aug_sum_dist_d_I_deg_2_vec[left_interval] - edge.aug_sum_dist_d_I_deg_2_vec[q_interval];
 				weight_d = edge.agg_weight_d_vec[left_interval] - edge.agg_weight_d_vec[q_interval];
 
-				if (our_model.k_type == 1)
-				{
-					//code here
-				}
-
-				if (our_model.k_type == 2)
-					edge_KA_value += (1 - our_model.gamma*cur_l.dist_n2*cur_l.dist_n2)*weight_d + 2 * our_model.gamma*cur_l.dist_n2*a_I_left_deg_1 - our_model.gamma*a_I_left_deg_2;
+				edge_KA_value += (1 - our_model.gamma*cur_l.dist_n2*cur_l.dist_n2)*weight_d + 2 * our_model.gamma*cur_l.dist_n2*a_I_left_deg_1 - our_model.gamma*a_I_left_deg_2;
 			}
 				
 			if (right_interval > q_interval)
@@ -153,14 +147,8 @@ double edge_KAF(model& our_model, int edge_index)
 				a_I_right_deg_1 = edge.aug_sum_dist_c_I_deg_1_vec[right_interval] - edge.aug_sum_dist_c_I_deg_1_vec[q_interval];
 				a_I_right_deg_2 = edge.aug_sum_dist_c_I_deg_2_vec[right_interval] - edge.aug_sum_dist_c_I_deg_2_vec[q_interval];
 				weight_c = edge.agg_weight_c_vec[right_interval] - edge.agg_weight_c_vec[q_interval];
-
-				if (our_model.k_type == 1)
-				{
-					//code here
-				}
-
-				if (our_model.k_type == 2)
-					edge_KA_value += (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*weight_c + 2 * our_model.gamma*cur_l.dist_n1*a_I_right_deg_1 - our_model.gamma*a_I_right_deg_2;
+				
+				edge_KA_value += (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*weight_c + 2 * our_model.gamma*cur_l.dist_n1*a_I_right_deg_1 - our_model.gamma*a_I_right_deg_2;
 			}
 
 			return edge_KA_value;
@@ -182,32 +170,16 @@ double edge_KAF(model& our_model, int edge_index)
 			left_value = our_model.bandwidth - dist_q_c;
 			left_interval = (int)floor(left_value / edge.min_dist_diff);
 			if (left_interval > 0)
-			{
-				if (our_model.k_type == 1)
-				{
-					//code here
-				}
-
-				if (our_model.k_type == 2)
-					edge_KA_value += (1 - our_model.gamma*dist_q_c*dist_q_c)*edge.agg_weight_c_vec[left_interval - 1]
+				edge_KA_value += (1 - our_model.gamma*dist_q_c*dist_q_c)*edge.agg_weight_c_vec[left_interval - 1]
 					- 2 * our_model.gamma*dist_q_c*edge.aug_sum_dist_c_I_deg_1_vec[left_interval - 1]
 					- our_model.gamma*edge.aug_sum_dist_c_I_deg_2_vec[left_interval - 1];
-			}
 				
 
 			if (edge.weight_vec[left_interval] > 0)
 			{
 				dist_q_p = dist_q_c + edge.interval_point_vec[left_interval];
 				if (dist_q_p <= our_model.bandwidth)
-				{
-					if (our_model.k_type == 1)
-					{
-						//code here
-					}
-
-					if (our_model.k_type == 2)
-						edge_KA_value += edge.weight_vec[left_interval] * (1 - our_model.gamma*dist_q_p*dist_q_p);
-				}
+					edge_KA_value += edge.weight_vec[left_interval] * (1 - our_model.gamma*dist_q_p*dist_q_p);
 			}
 
 			return edge_KA_value;
@@ -220,13 +192,7 @@ double edge_KAF(model& our_model, int edge_index)
 			right_interval = (int)floor(left_value / edge.min_dist_diff);
 			if (right_interval < edge.num_intervals - 1)
 			{
-				if (our_model.k_type == 1)
-				{
-					//code here
-				}
-
-				if (our_model.k_type == 2)
-					edge_KA_value += (1 - our_model.gamma*dist_q_d*dist_q_d)*edge.agg_weight_d_vec[right_interval + 1]
+				edge_KA_value += (1 - our_model.gamma*dist_q_d*dist_q_d)*edge.agg_weight_d_vec[right_interval + 1]
 					- 2 * our_model.gamma*dist_q_d*edge.aug_sum_dist_d_I_deg_1_vec[right_interval + 1]
 					- our_model.gamma*edge.aug_sum_dist_d_I_deg_2_vec[right_interval + 1];
 			}
@@ -236,15 +202,7 @@ double edge_KAF(model& our_model, int edge_index)
 			{
 				dist_q_p = dist_q_d + (edge.length - edge.interval_point_vec[right_interval]);
 				if (dist_q_p <= our_model.bandwidth)
-				{
-					if (our_model.k_type == 1)
-					{
-						//code here
-					}
-
-					if (our_model.k_type == 2)
-						edge_KA_value += edge.weight_vec[right_interval] * (1 - our_model.gamma*dist_q_p*dist_q_p);
-				}
+					edge_KA_value += edge.weight_vec[right_interval] * (1 - our_model.gamma*dist_q_p*dist_q_p);
 			}
 
 			return edge_KA_value;
@@ -381,12 +339,7 @@ double edge_KAF(model& our_model, int edge_index)
 				a_P_right_deg_1 = PS[right_position].aug_sum_dist_c_p_deg_1;
 				a_P_right_deg_2 = PS[right_position].aug_sum_dist_c_p_deg_2;
 
-				if (our_model.k_type == 1)
-					edge_KA_value = (1 + our_model.gamma*cur_l.dist_n1)*(right_position + 1)
-					- our_model.gamma*a_P_right_deg_1;
-
-				if (our_model.k_type == 2)
-					edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(right_position + 1)
+				edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(right_position + 1)
 					+ 2 * our_model.gamma*cur_l.dist_n1*a_P_right_deg_1 - our_model.gamma*a_P_right_deg_2;
 
 				return edge_KA_value;
@@ -399,12 +352,7 @@ double edge_KAF(model& our_model, int edge_index)
 				a_P_right_deg_1 = PS[right_position].aug_sum_dist_c_p_deg_1 - PS[q_position].aug_sum_dist_c_p_deg_1;
 				a_P_right_deg_2 = PS[right_position].aug_sum_dist_c_p_deg_2 - PS[q_position].aug_sum_dist_c_p_deg_2;
 
-				if (our_model.k_type == 1)
-					edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1)*(q_position + 1) + our_model.gamma*a_P_left_deg_1
-					+ (1 + our_model.gamma*cur_l.dist_n1)*(right_position - q_position) - our_model.gamma*a_P_right_deg_1;
-
-				if (our_model.k_type == 2)
-					edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(q_position + 1)
+				edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(q_position + 1)
 					+ 2 * our_model.gamma*cur_l.dist_n1*a_P_left_deg_1 - our_model.gamma*a_P_left_deg_2
 					+ (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(right_position - q_position)
 					+ 2 * our_model.gamma*cur_l.dist_n1*a_P_right_deg_1 - our_model.gamma*a_P_right_deg_2;
@@ -418,12 +366,7 @@ double edge_KAF(model& our_model, int edge_index)
 			a_P_right_deg_1 = PS[right_position].aug_sum_dist_c_p_deg_1 - PS[q_position].aug_sum_dist_c_p_deg_1;
 			a_P_right_deg_2 = PS[right_position].aug_sum_dist_c_p_deg_2 - PS[q_position].aug_sum_dist_c_p_deg_2;
 
-			if (our_model.k_type == 1)
-				edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1)*(q_position - left_position) + our_model.gamma*a_P_left_deg_1
-				+ (1 + our_model.gamma*cur_l.dist_n1)*(right_position - q_position) - our_model.gamma*a_P_right_deg_1;
-
-			if (our_model.k_type == 2)
-				edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(q_position - left_position)
+			edge_KA_value = (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(q_position - left_position)
 				+ 2 * our_model.gamma*cur_l.dist_n1*a_P_left_deg_1 - our_model.gamma*a_P_left_deg_2
 				+ (1 - our_model.gamma*cur_l.dist_n1*cur_l.dist_n1)*(right_position - q_position)
 				+ 2 * our_model.gamma*cur_l.dist_n1*a_P_right_deg_1 - our_model.gamma*a_P_right_deg_2;
@@ -450,15 +393,8 @@ double edge_KAF(model& our_model, int edge_index)
 			if (left_position == -1) //left position is -1
 				return 0;
 			else
-			{
-				if (our_model.k_type == 1)
-					edge_KA_value = (1 - our_model.gamma*dist_q_c)*(left_position + 1)
-					- our_model.gamma*PS[left_position].aug_sum_dist_c_p_deg_1;
-
-				if (our_model.k_type == 2)
-					edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(left_position + 1)
+				edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(left_position + 1)
 					- 2 * our_model.gamma*dist_q_c*PS[left_position].aug_sum_dist_c_p_deg_1 - our_model.gamma*PS[left_position].aug_sum_dist_c_p_deg_2;
-			}
 			
 			return edge_KA_value;
 		}
@@ -472,15 +408,8 @@ double edge_KAF(model& our_model, int edge_index)
 			if (right_position == PS.size())
 				return 0;
 			else
-			{
-				if (our_model.k_type == 1)
-					edge_KA_value = (1 - our_model.gamma*dist_q_d)*(PS.size() - right_position)
-					- our_model.gamma*PS[right_position].aug_sum_dist_d_p_deg_1;
-
-				if (our_model.k_type == 2)
-					edge_KA_value = (1 - our_model.gamma*dist_q_d*dist_q_d)*(PS.size() - right_position)
+				edge_KA_value = (1 - our_model.gamma*dist_q_d*dist_q_d)*(PS.size() - right_position)
 					- 2 * our_model.gamma*dist_q_d*PS[right_position].aug_sum_dist_d_p_deg_1 - our_model.gamma*PS[right_position].aug_sum_dist_d_p_deg_2;
-			}
 
 			return edge_KA_value;
 		}
@@ -498,83 +427,39 @@ double edge_KAF(model& our_model, int edge_index)
 				if (left_position == -1 && right_position == PS.size())
 					return 0;
 				if (right_position == PS.size())
-				{
-					if (our_model.k_type == 1)
-						edge_KA_value = (1 - our_model.gamma*dist_q_c)*(left_position + 1)
-						- our_model.gamma*PS[left_position].aug_sum_dist_c_p_deg_1;
-
-					if (our_model.k_type == 2)
-						edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(left_position + 1)
+					edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(left_position + 1)
 						- 2 * our_model.gamma*dist_q_c*PS[left_position].aug_sum_dist_c_p_deg_1 - our_model.gamma*PS[left_position].aug_sum_dist_c_p_deg_2;
-				}
 					
 				if (left_position == -1)
-				{
-					if (our_model.k_type == 1)
-						edge_KA_value = (1 - our_model.gamma*dist_q_d)*(PS.size() - right_position)
-						- our_model.gamma*PS[right_position].aug_sum_dist_d_p_deg_1;
-
-					if (our_model.k_type == 2)
-						edge_KA_value = (1 - our_model.gamma*dist_q_d*dist_q_d)*(PS.size() - right_position)
+					edge_KA_value = (1 - our_model.gamma*dist_q_d*dist_q_d)*(PS.size() - right_position)
 						- 2 * our_model.gamma*dist_q_d*PS[right_position].aug_sum_dist_d_p_deg_1 - our_model.gamma*PS[right_position].aug_sum_dist_d_p_deg_2;
-				}
-					
 			}
 			else
 			{
 				if (left_position < right_position)
-				{
-					if (our_model.k_type == 1)
-						edge_KA_value = (1 - our_model.gamma*dist_q_c)*(left_position + 1) - our_model.gamma*PS[left_position].aug_sum_dist_c_p_deg_1
-						+ (1 - our_model.gamma*dist_q_d)*(PS.size() - right_position) - our_model.gamma*PS[right_position].aug_sum_dist_d_p_deg_1;
-
-					if (our_model.k_type == 2)
-						edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(left_position + 1)
+					edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(left_position + 1)
 						- 2 * our_model.gamma*dist_q_c*PS[left_position].aug_sum_dist_c_p_deg_1 - our_model.gamma*PS[left_position].aug_sum_dist_c_p_deg_2
 						+ (1 - our_model.gamma*dist_q_d*dist_q_d)*(PS.size() - right_position)
 						- 2 * our_model.gamma*dist_q_d*PS[right_position].aug_sum_dist_d_p_deg_1 - our_model.gamma*PS[right_position].aug_sum_dist_d_p_deg_2;
-				}
 				else
 				{
 					middle_value = dist_q_d - dist_q_c;
 					middle_position = find_position(middle_value, e, 2);
 
 					if (middle_position > -1 && middle_position < (int)PS.size() - 1)
-					{
-						if (our_model.k_type == 1)
-							edge_KA_value = (1 - our_model.gamma*dist_q_c)*(middle_position + 1) - our_model.gamma*PS[middle_position].aug_sum_dist_c_p_deg_1
-							+ (1 - our_model.gamma*dist_q_d)*(PS.size() - 1 - middle_position) - our_model.gamma*PS[middle_position + 1].aug_sum_dist_d_p_deg_1;
-
-						if (our_model.k_type == 2)
-							edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(middle_position + 1)
+						edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*(middle_position + 1)
 							- 2 * our_model.gamma*dist_q_c*PS[middle_position].aug_sum_dist_c_p_deg_1 - our_model.gamma*PS[middle_position].aug_sum_dist_c_p_deg_2
 							+ (1 - our_model.gamma*dist_q_d*dist_q_d)*(PS.size() - 1 - middle_position)
 							- 2 * our_model.gamma*dist_q_d*PS[middle_position + 1].aug_sum_dist_d_p_deg_1 - our_model.gamma*PS[middle_position + 1].aug_sum_dist_d_p_deg_2;
-					}
 					else
 					{
 						if (middle_position == -1)
-						{
-							if (our_model.k_type == 1)
-								edge_KA_value = (1 - our_model.gamma*dist_q_d)*e.PS.size()
-									- our_model.gamma*PS[0].aug_sum_dist_d_p_deg_1;
-
-							if (our_model.k_type == 2)
-								edge_KA_value = (1 - our_model.gamma*dist_q_d*dist_q_d)*e.PS.size()
+							edge_KA_value = (1 - our_model.gamma*dist_q_d*dist_q_d)*e.PS.size()
 								- 2 * our_model.gamma*dist_q_d*PS[0].aug_sum_dist_d_p_deg_1 - our_model.gamma*PS[0].aug_sum_dist_d_p_deg_2;
-						}
 							
 						if (middle_position == PS.size() - 1)
-						{
-							if (our_model.k_type == 1)
-								edge_KA_value = (1 - our_model.gamma*dist_q_c)*e.PS.size()
-								- our_model.gamma*PS[PS.size() - 1].aug_sum_dist_c_p_deg_1;
-
-							if (our_model.k_type == 2)
-								edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*e.PS.size()
-								- 2 * our_model.gamma*dist_q_c*PS[PS.size() - 1].aug_sum_dist_c_p_deg_1 - our_model.gamma*PS[PS.size() - 1].aug_sum_dist_c_p_deg_2;
-						}
-							
+							edge_KA_value = (1 - our_model.gamma*dist_q_c*dist_q_c)*e.PS.size()
+								- 2 * our_model.gamma*dist_q_c*PS[PS.size() - 1].aug_sum_dist_c_p_deg_1 - our_model.gamma*PS[PS.size() - 1].aug_sum_dist_c_p_deg_2;							
 					}
 				}
 			}
