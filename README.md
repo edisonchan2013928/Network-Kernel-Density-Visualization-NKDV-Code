@@ -6,6 +6,9 @@ To compile our code, please use the shell script file (call_NKDV.sh). Unfortunat
 In the future, we plan to develop the visualization system (like our previous work [4]), based on our NKDV code, to support some meaningful applications, e.g., hotspot detection of traffic accidents, crime events and COVID-19 cases. In addition, we also plan to develop the software, called Fast-SANET, which can be much faster than the SANET plugin [1] for supporting different point pattern analysis methods in network.
 
 [1] SANET. http://sanet.csis.u-tokyo.ac.jp/ (last accessed: 2020-10-15).
+
 [2] Tsz Nam Chan, Zhe Li, Leong Hou U, Jianliang Xu, Reynold Cheng. "Fast Augmentation Algorithms for Network Kernel Density Visualization" Proceedings of International Conference on Very Large Data Bases (PVLDB), 2021.
+
 [3] Geoff Boeing, "Osmnx: New methods for acquiring, constructing, analyzing, and visualizing complex street networks" Computers, Environment and Urban Systems, 65:126 - 139, 2017.
+
 [4] Tsz Nam Chan, Pak Lon Ip, Leong Hou U, Weng Hou Tong, Shivansh Mittal, Ye Li and Reynold Cheng. "KDV-Explorer: A near real-time kernel density visualization system for spatial analysis" (Webpage link: https://www.comp.hkbu.edu.hk/~edisonchan/system/KDV-Explorer.html)
