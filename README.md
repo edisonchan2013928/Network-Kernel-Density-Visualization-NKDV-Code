@@ -11,4 +11,4 @@ In the future, we plan to develop the visualization system (like our previous wo
 
 [3] Geoff Boeing, "Osmnx: New methods for acquiring, constructing, analyzing, and visualizing complex street networks" Computers, Environment and Urban Systems, 65:126 - 139, 2017.
 
-[4] Tsz Nam Chan, Pak Lon Ip, Leong Hou U, Weng Hou Tong, Shivansh Mittal, Ye Li and Reynold Cheng. "KDV-Explorer: A near real-time kernel density visualization system for spatial analysis" (Webpage link: https://www.comp.hkbu.edu.hk/~edisonchan/system/KDV-Explorer.html)
+[4] Tsz Nam Chan, Pak Lon Ip, Leong Hou U, Weng Hou Tong, Shivansh Mittal, Ye Li and Reynold Cheng. "KDV-Explorer: A near real-time kernel density visualization system for spatial analysis" Proceedings of International Conference on Very Large Data Bases (PVLDB), 2021 (Webpage link: https://www.comp.hkbu.edu.hk/~edisonchan/system/KDV-Explorer.html).
