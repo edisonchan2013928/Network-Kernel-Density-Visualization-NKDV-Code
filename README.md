@@ -3,7 +3,7 @@ Network kernel density visualization (NKDV) is one of the most important point p
 
 To compile our code, please use the shell script file (call_NKDV.sh). Unfortunately, since the size of the Github page is small, we do not attach the datasets here. If you would like to run our code, please download the point datasets (cf. references in Table 4) and utilize the software OSMNx [3] to extract the road network from different regions, Seattle, Atlanta, San Francisco and New York.
 
-In the future, we plan to develop the visualization system (like our previous work [4]), based on our NKDV code, to support some meaningful applications, e.g., hotspot detection of traffic accidents, crime events and COVID-19 cases. In addition, we also plan to develop the software, called Fast-SANET, which can be much faster than the SANET plugin [1] for supporting different point pattern analysis methods in network. Furthermore, we will integrate this Fast-SANET plugin into the commonly-used GIS software, including QGIS and ArcGIS.
+In the future, we plan to develop the visualization system (like our previous work [4]), based on our NKDV code, to support some meaningful applications, e.g., hotspot detection of traffic accidents, crime events and COVID-19 cases. In addition, we also plan to develop the software, called Fast-SANET, which can be much faster than the SANET plugin [1] for supporting different point pattern analysis methods in a road network. Furthermore, we will integrate this Fast-SANET plugin into the commonly-used GIS software, including QGIS and ArcGIS. As a remark, the attached code is not fully optimized, we plan to fully optimize it when we develop the Fast-SANET plugin.
 
 [1] SANET. http://sanet.csis.u-tokyo.ac.jp/ (last accessed: 2020-10-15).
 
